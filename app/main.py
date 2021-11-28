@@ -30,6 +30,11 @@ def fake_hash_password(password: str):
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
+class Item(BaseModel):
+    name: str
+    description: Optional[str] = None
+    price: float
+    tax: Optional[float] = None
 
 class User(BaseModel):
     username: str
@@ -105,3 +110,8 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
 async def read_users_me(current_user: User = Depends(get_current_active_user)):
 
     return current_user
+
+
+@app.post("/items/")
+async def create_item(item: Item):
+    return item
