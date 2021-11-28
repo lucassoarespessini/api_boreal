@@ -8,4 +8,6 @@ services:
         dockerfile: Dockerfile
     ports:
       - "80:80"
-    
+      - "81:81"
+    volumes:
+      - "./app:/code/app"    
