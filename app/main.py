@@ -8,6 +8,7 @@ from jose import JWTError, jwt
 
 from passlib.context import CryptContext
 from pydantic import BaseModel
+import requests
 
 # to get a string like this run:
 # openssl rand -hex 32
@@ -166,3 +167,9 @@ async def read_own_items(current_user: User = Depends(get_current_active_user)):
 @app.post("/items/")
 async def create_item(item: Item):
     return item
+
+@app.get("/cervejas/")
+def cervejas():
+     r = requests.get('https://api.openbrewerydb.org/breweries/')
+     r.json()
+     return r.json()
