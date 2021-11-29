@@ -56,10 +56,9 @@ class UserInDB(User):
     hashed_password: str
 
 class Item(BaseModel):
-    name: str
-    description: Optional[str] = None
-    price: float
-    tax: Optional[float] = None
+    User: str
+    Order: float
+    PreviousOrder: bool
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
