@@ -22,11 +22,11 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
 
 fake_users_db = {
-    "johndoe": {
-        "username": "johndoe",
-        "full_name": "John Doe",
-        "email": "johndoe@example.com",
-        "hashed_password": "$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW",
+    "admin": {
+        "username": "admin",
+        "full_name": "admin",
+        "email": "admin@example.com",
+        "hashed_password": "$2y$10$yp3ph5zuOET0cXDQhc8HwuG8HVzBfGuxs7mj6TZj8HnEP6qQZjw9K",
         "disabled": False,
     }
 }
@@ -59,6 +59,7 @@ class Item(BaseModel):
     User: str
     Order: float
     PreviousOrder: bool
+    token: str
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -137,6 +138,24 @@ async def get_current_active_user(current_user: User = Depends(get_current_user)
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
 
+async def get_current_active_item(current_item: Item ):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = jwt.decode(current_item.token, SECRET_KEY, algorithms=[ALGORITHM])
+        username: str = payload.get("sub")
+        if username is None:
+            raise credentials_exception
+        token_data = TokenData(username=username)
+    except JWTError:
+        raise credentials_exception
+    user = get_user(fake_users_db, username=token_data.username)
+    if user is None:
+        raise credentials_exception
+    return current_item
 
 @app.post("/token", response_model=Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
@@ -164,7 +183,7 @@ async def read_own_items(current_user: User = Depends(get_current_active_user)):
     return [{"item_id": "Foo", "owner": current_user.username}]
 
 @app.post("/items/")
-async def create_item(item: Item):
+async def create_item(item: Item = Depends(get_current_active_item)):
     return item
 
 @app.get("/cervejas/")
