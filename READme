@@ -7,3 +7,4 @@ docker exec -it myfastapi uvicorn app.main:app --host 0.0.0.0 --port 81 --reload
 docker-compose down
 
 http://127.0.0.1/docs#/
+http://127.0.0.1:81/docs#/
