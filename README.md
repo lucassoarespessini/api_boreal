@@ -36,6 +36,25 @@ docker exec -it myfastapi  curl -X 'POST' \
 ```
 Aqui pode verificar que ele retorna o token.
 
+
+### Segundo Endpoint
+
+Endpoint com request method POST, com payload: User (Str), Order (Float), PreviousOrder (Boolean), retornando um JSON com a RESPONSE 200 e os items do payload. 
+
+```sh
+docker exec -it myfastapi  curl -X 'POST' \
+  'http://127.0.0.1/items/' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "User": "Usuario 1",
+  "Order": 0.001,
+  "PreviousOrder": true,
+  "token": "TOKEN"
+}'
+```
+Aqui tem que lembrar que tem que utilizar o TOKEN que vem do retorno do primeiro endpoint.
+
 ## Para Ver Novas Modificações do Código
 
 O código está presente em app/main.py. Caso seja alterado esse código e queira ver as novas modificações, salve o novo código em app/main.py e depois executa o seguinte comando.
