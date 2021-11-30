@@ -1,5 +1,5 @@
 # API - BOREAL
-> Meu nome é Lucas Soares Pessini e estou perticipando do Processo Seletivo do API Boreal. Para executar esse programa é nescessário que tenha instalado o docker-compose versão 1.29.2 e também que as portas 80 e 81 liberadas.
+> Meu nome é Lucas Soares Pessini e estou perticipando do Processo Seletivo da Empresa Boreal. Para executar esse programa é nescessário que tenha instalado o docker-compose versão 1.29.2 e também que as portas 80 e 81 liberadas.
 
 
 
