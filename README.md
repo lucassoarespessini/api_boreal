@@ -55,6 +55,19 @@ docker exec -it myfastapi  curl -X 'POST' \
 ```
 Aqui tem que lembrar que tem que utilizar o TOKEN que vem do retorno do primeiro endpoint.
 
+
+### Terceiro Endpoint
+
+Endpoint com request method GET, buscando dados da API OpenBreweries (https://api.openbrewerydb.org/breweries/), mostrando no resultado apenas um dicionário com os nomes das cervejas que estarão em uma lista.
+
+
+```sh
+curl -X 'GET' \
+  'http://127.0.0.1/cervejas/TOKEN' \
+  -H 'accept: application/json'
+```
+Aqui tem que lembrar que tem que utilizar o TOKEN que vem do retorno do primeiro endpoint.
+
 ## Para Ver Novas Modificações do Código
 
 O código está presente em app/main.py. Caso seja alterado esse código e queira ver as novas modificações, salve o novo código em app/main.py e depois executa o seguinte comando.
