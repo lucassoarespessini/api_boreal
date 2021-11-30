@@ -18,6 +18,8 @@ Depois acessa o seguinte link http://127.0.0.1/docs#/ onde verica os endpoints q
   <img src="./img/docs_fastapi.png" alt="Size Limit CLI" width="738">
 </p>
 
+Lembrando que o código principal está em app/main.py.
+
 
 ## Endpoints Desenvolvidos
 
@@ -62,7 +64,7 @@ Endpoint com request method GET, buscando dados da API OpenBreweries (https://ap
 
 
 ```sh
-curl -X 'GET' \
+docker exec -it myfastapi curl -X 'GET' \
   'http://127.0.0.1/cervejas/TOKEN' \
   -H 'accept: application/json'
 ```
