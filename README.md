@@ -12,7 +12,7 @@ Executa o comando abaixo no diretório onde está o projeto baixado:
 docker-compose up -d
 ```
 
-Depois acessa o seguinte link http://127.0.0.1/docs#/ onde verica os endpoints que foram desenvolvidos.
+Depois acessa o seguinte link http://127.0.0.1/docs#/ onde verifica os endpoints que foram desenvolvidos.
 
 <p align="center">
   <img src="./img/docs_fastapi.png" alt="Size Limit CLI" width="738">
