@@ -14,6 +14,27 @@ docker-compose up -d
 
 Depois acessa o seguinte link http://127.0.0.1/docs#/ onde verica os endpoints que foram desenvolvidos.
 
+<p align="center">
+  <img src="./img/docs_fastapi.png" alt="Size Limit CLI" width="738">
+</p>
+
+
+## Endpoints Desenvolvidos
+
+Foram desenvolvidos 3 endpoints:
+
+### Primeiro Endpoint
+
+Autenticação com OAuth2, protegendo todas as rotas, gerando token, que expira a cada hora, e o token deve ser utilizado em todos os endpoints.
+
+```sh
+docker exec -it myfastapi  curl -X 'POST' \
+  'http://127.0.0.1/token' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'grant_type=&username=admin&password=admin&scope=&client_id=&client_secret='
+```
+Aqui pode verificar que ele retorna o token.
 
 ## Para Ver Novas Modificações do Código
 
